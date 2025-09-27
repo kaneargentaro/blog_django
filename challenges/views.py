@@ -16,6 +16,19 @@ challenges = {
     'december': 'Walk for 130 minutes'
 }
 
+def index(request):
+    list_items=""
+    months = list(challenges.keys())
+
+    for month in months:
+        capitalised_month = month.capitalize()
+        month_path = reverse('month', args=[month])
+        list_items += f"<li><a href=\"{month_path}\">{capitalised_month}</li>"
+
+    response_data = f"<ul>{list_items}</ul>"
+
+    return HttpResponse(response_data)
+
 def month_by_number(request, month):
     if month < 1 or month > 12:
         return HttpResponseNotFound()

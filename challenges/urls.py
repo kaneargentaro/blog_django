@@ -21,4 +21,5 @@ from . import views
 urlpatterns = [
     path('<int:month>', views.month_by_number),
     path('<str:month>', views.month, name='month'),
+    path('', views.index, name='index'),
 ]
