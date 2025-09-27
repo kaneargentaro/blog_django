@@ -15,7 +15,7 @@ challenges = {
     'september': 'Walk for 100 minutes',
     'october': 'Walk for 110 minutes',
     'november': 'Walk for 120 minutes',
-    'december': 'Walk for 130 minutes'
+    'december': None
 }
 
 
@@ -37,8 +37,6 @@ def month_by_number(request, month):
 
 def month(request, month):
     challenge_text = challenges.get(month.lower())
-    if challenge_text is None:
-        return HttpResponseNotFound('Month not found')
     return render(request, 'challenges/challenge.html', {
         'month': month,
         'text': challenge_text
