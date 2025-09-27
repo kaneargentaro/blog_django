@@ -28,4 +28,5 @@ def month(request, month):
     challenge_text = challenges.get(month.lower())
     if challenge_text is None:
         return HttpResponseNotFound('Month not found')
-    return HttpResponse(challenge_text)
+    response_data = f"<h1>{challenge_text}</h1>"
+    return HttpResponse(response_data)
