@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.urls import reverse
 from django.template.loader import render_to_string
@@ -36,8 +36,11 @@ def month_by_number(request, month):
 
 
 def month(request, month):
-    challenge_text = challenges.get(month.lower())
-    return render(request, 'challenges/challenge.html', {
-        'month': month,
-        'text': challenge_text
-    })
+    try:
+        challenge_text = challenges[month]
+        return render(request, 'challenges/challenge.html', {
+            'month': month,
+            'text': challenge_text
+        })
+    except:
+        raise Http404()
