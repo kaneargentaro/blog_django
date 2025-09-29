@@ -14,7 +14,7 @@
 
     <ul>
         {% for month in months %}
-            <li><a href="{% url 'month' month %}">{{month|title}}</li>
+            <li><a href="{% url 'month' month.name %}">{{month.name|title}}</li>
         {% endfor %}
     </ul>
 {% endblock %}
