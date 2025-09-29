@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Challenge(models.Model):
@@ -14,7 +14,7 @@ class Challenge(models.Model):
 class Month(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    code = models.IntegerField()
+    code = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(12)])
 
     def __str__(self):
         return self.name
